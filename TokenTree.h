@@ -28,8 +28,8 @@ public:
     //prev and next in the chain
     void connectPrev(TokenTree* prev);
     void connectNext(TokenTree* next);
-    void disconnectPrev();
-    void disconnectNext();
+    TokenTree* disconnectPrev();
+    TokenTree* disconnectNext();
     TokenTree* getPrev();
     TokenTree* getNext();
     bool hasPrev();
@@ -38,8 +38,8 @@ public:
     //left and right in the tree
     void connectLeft(TokenTree* left);
     void connectRight(TokenTree* right);
-    void disconnectLeft();
-    void disconnectRight();
+    TokenTree* disconnectLeft();
+    TokenTree* disconnectRight();
     TokenTree* getLeft();
     TokenTree* getRight();
     bool hasLeft();

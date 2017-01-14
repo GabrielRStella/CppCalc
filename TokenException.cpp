@@ -11,13 +11,13 @@ class TokenException : std::exception {
 public:
     TokenException(std::string s);
     
-    const char* what() const override;
+    const char* what() const noexcept override;
 private:
-    std::string what;
+    std::string str;
 };
 
-TokenException::TokenException(std::string s) : what{s} {}
+TokenException::TokenException(std::string s) : str{s} {}
 
-const char* TokenException::what() const {
-    return what.c_str();
+const char* TokenException::what() const noexcept {
+    return str.c_str();
 }

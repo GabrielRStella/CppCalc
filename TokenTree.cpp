@@ -24,6 +24,7 @@ TokenTree::TokenTree(const TokenTree& orig) : token{orig.token} {
 }
 
 TokenTree::~TokenTree() {
+    delete &token;
 }
 
 Token TokenTree::getToken() {
@@ -32,23 +33,39 @@ Token TokenTree::getToken() {
     
 //prev and next in the chain
 void TokenTree::connectPrev(TokenTree* prev) {
+    if(this->prev != nullptr) {
+        this->prev->next = nullptr;
+    }
+    if(prev->next != nullptr) {
+        prev->next->prev = nullptr;
+    }
     this->prev = prev;
     prev->next = this;
 }
 
 void TokenTree::connectNext(TokenTree* next) {
+    if(this->next != nullptr) {
+        this->next->prev = nullptr;
+    }
+    if(next->prev != nullptr) {
+        next->prev->next = nullptr; //darn chains
+    }
     this->next = next;
     next->prev = this;
 }
 
-void TokenTree::disconnectPrev() {
+TokenTree* TokenTree::disconnectPrev() {
     if(prev != nullptr) prev->next = nullptr;
+    TokenTree* temp = this->prev;
     this->prev = nullptr;
+    return temp;
 }
 
-void TokenTree::disconnectNext() {
+TokenTree* TokenTree::disconnectNext() {
     if(next != nullptr) next->prev = nullptr;
+    TokenTree* temp = this->next;
     this->next = nullptr;
+    return temp;
 }
 
 TokenTree* TokenTree::getPrev() {
@@ -69,7 +86,9 @@ bool TokenTree::hasNext() {
 
 //left and right in the tree
 void TokenTree::connectLeft(TokenTree* left) {
-    this->left = left;
+    if(this->left != nullptr) {
+        this->left->up = nullptr;
+    }
     if(left->up != nullptr) {
         //disconnect from previous parent
         TokenTree* lUp = left->up;
@@ -79,11 +98,14 @@ void TokenTree::connectLeft(TokenTree* left) {
             lUp->right = nullptr;
         }
     }
+    this->left = left;
     left->up = this;
 }
 
 void TokenTree::connectRight(TokenTree* right) {
-    this->right = right;
+    if(this->right != nullptr) {
+        this->right->up = nullptr;
+    }
     if(right->up != nullptr) {
         //disconnect from previous parent
         TokenTree* lUp = right->up;
@@ -93,17 +115,22 @@ void TokenTree::connectRight(TokenTree* right) {
             lUp->right = nullptr;
         }
     }
+    this->right = right;
     right->up = this;
 }
 
-void TokenTree::disconnectLeft() {
+TokenTree* TokenTree::disconnectLeft() {
     this->left = nullptr;
+    TokenTree* temp = this->left;
     this->left->up = nullptr;
+    return temp;
 }
 
-void TokenTree::disconnectRight() {
+TokenTree* TokenTree::disconnectRight() {
     this->right = nullptr;
+    TokenTree* temp = this->right;
     this->right->up = nullptr;
+    return temp;
 }
 
 TokenTree* TokenTree::getLeft() {

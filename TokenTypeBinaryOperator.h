@@ -23,8 +23,11 @@ public:
     TokenTypeBinaryOperator(std::string value);
     TokenTypeBinaryOperator(const TokenTypeBinaryOperator& orig);
     virtual ~TokenTypeBinaryOperator();
-    
     std::string getValue();
+    
+    Token* parse(std::istream& stream) override; //return null, or a token
+    void parse(TokenTree* tree) override; //expand the tree wherever this token type is present, according to its own rules
+    
     Expression* createExpression(Expression* left, Expression* right) override;
 private:
     std::string value;
