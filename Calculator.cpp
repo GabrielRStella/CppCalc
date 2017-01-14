@@ -19,17 +19,17 @@
 #include "TokenType.h"
 #include "TokenTree.h"
 
-Calculator::Calculator() {
+Calculator::Calculator() : tokenTypes{} {
 }
 
-Calculator::Calculator(const Calculator& orig) {
+Calculator::Calculator(const Calculator& orig) : tokenTypes{orig.tokenTypes} {
 }
 
 Calculator::~Calculator() {
 }
     
-std::vector<TokenType>& Calculator::getTokenTypes() {
-    
+std::vector<TokenType*>& Calculator::getTokenTypes() {
+    return tokenTypes;
 }
 
 TokenTree& Calculator::read(std::istream& stream) {

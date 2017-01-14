@@ -23,7 +23,12 @@
 #include <time.h>
 using namespace std;
 
-using namespace std;
+#include "Calculator.h"
+#include "Expression.h"
+#include "Token.h"
+#include "TokenTree.h"
+#include "TokenType.h"
+#include "TokenTypeBinaryOperator.h"
 
 /*
  * 
@@ -31,6 +36,19 @@ using namespace std;
 int main(int argc, char** argv) {
     //TODO: a calculator that reads tokens out of cin, stores them in a syntax tree, and evaluates.
     //runs multi-line like an interpreter and can use variables.
+    
+//TokenTypeBinaryOperator PLUS{"+"};
+//TokenTypeBinaryOperator MINUS{"-"};
+//TokenTypeBinaryOperator MULTIPLY{"*"};
+//TokenTypeBinaryOperator DIVIDE{"/"};
+//TokenType PARENTHESES_LEFT;
+//TokenType PARENTHESES_RIGHT;
+//TokenType VALUE;
+
+//TODO---
+//TokenType ASSIGN;
+//TokenType VARIABLE;
+    
     return 0;
 }
 

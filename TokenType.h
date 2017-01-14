@@ -33,17 +33,5 @@ public:
 private:
 };
 
-//constexpr TokenType PLUS;
-//constexpr TokenType MINUS;
-//constexpr TokenType MULTIPLY;
-//constexpr TokenType DIVIDE;
-//constexpr TokenType PARENTHESES_LEFT;
-//constexpr TokenType PARENTHESES_RIGHT;
-//constexpr TokenType VALUE;
-
-//TODO---
-//constexpr TokenType ASSIGN;
-//constexpr TokenType VARIABLE;
-
 #endif /* TOKENTYPE_H */
 

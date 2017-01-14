@@ -25,11 +25,11 @@ public:
     Calculator(const Calculator& orig);
     virtual ~Calculator();
     
-    std::vector<TokenType>& getTokenTypes();
+    std::vector<TokenType*>& getTokenTypes();
     
     TokenTree& read(std::istream& stream); //returns the top-most, left-most node
 private:
-    
+    std::vector<TokenType*> tokenTypes;
 };
 
 #endif /* CALCULATOR_H */
