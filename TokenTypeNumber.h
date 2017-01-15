@@ -25,6 +25,8 @@ public:
     TokenTypeNumber(const TokenTypeNumber& orig);
     virtual ~TokenTypeNumber();
     
+    virtual std::string getType() override;
+    
     Token* parse(std::istream& stream) override; //return null, or a token
     void parse(TokenTree* tree) override; //expand the tree wherever this token type is present, according to its own rules
     

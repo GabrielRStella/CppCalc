@@ -48,22 +48,28 @@ int main(int argc, char** argv) {
 
     types.push_back(new TokenTypeNumber{});
     types.push_back(new TokenTypeLeftParentheses{});
+    types.push_back(new TokenTypeUnknown{')'});
     types.push_back(new TokenTypeBinaryOperator{'*'});
     types.push_back(new TokenTypeBinaryOperator{'/'});
     types.push_back(new TokenTypeBinaryOperator{'+'});
     types.push_back(new TokenTypeBinaryOperator{'-'});
     
-    cout << "Input: ";
-    TokenTree* tree = c.read(cin);
-    cout << "Output: ";
-    if(tree == nullptr) cout << "nullptr";
-    else cout << *tree;
-    cout << endl;
-    tree = c.parse(tree);
-    cout << "Parsed: ";
-    if(tree == nullptr) cout << "nullptr";
-    else cout << *tree;
-    cout << endl;
+    while(true) {
+        cout << "Input: ";
+        TokenTree* tree = c.read(cin);
+        cout << "Output: ";
+        if(tree == nullptr) cout << "nullptr";
+        else cout << *tree;
+        cout << endl;
+        tree = c.parse(tree);
+        cout << "Parsed: ";
+        if(tree == nullptr) cout << "nullptr";
+        else cout << *tree;
+        cout << endl << endl;
+        
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
     
 //TokenTypeLeftParentheses PARENTHESES_LEFT;
 //TokenTypeUnknown PARENTHESES_RIGHT{")"};

@@ -34,6 +34,6 @@ std::string Token::getValue() {
 }
 
 std::ostream& operator<<(std::ostream& o, Token& t) {
-    o << "Token(" << t.getValue() << ")";
+    o << "Token(" << t.getType().getType() << ", '" << t.getValue() << "')";
     return o;
 }

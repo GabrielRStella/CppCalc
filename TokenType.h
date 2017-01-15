@@ -25,6 +25,8 @@ public:
     TokenType(const TokenType& orig);
     virtual ~TokenType();
     
+    virtual std::string getType() = 0;
+    
     virtual Token* parse(std::istream& stream) = 0; //return null, or a token
     virtual void parse(TokenTree* tree) = 0; //expand the tree wherever this token type is present, according to its own rules
     

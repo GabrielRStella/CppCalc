@@ -21,6 +21,10 @@ TokenTypeLeftParentheses::TokenTypeLeftParentheses(const TokenTypeLeftParenthese
 
 TokenTypeLeftParentheses::~TokenTypeLeftParentheses() {
 }
+    
+std::string TokenTypeLeftParentheses::getType() {
+    return "Left Parentheses";
+}
 
 Token* TokenTypeLeftParentheses::parse(std::istream& stream) {
     return tokenSimpleReadChar('(', stream) ? new Token{*this, "("} : nullptr; // :( have to use new... well don't have to but it's easy and practice is good

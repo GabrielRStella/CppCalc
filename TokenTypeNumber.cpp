@@ -23,6 +23,10 @@ TokenTypeNumber::TokenTypeNumber(const TokenTypeNumber& orig) {
 
 TokenTypeNumber::~TokenTypeNumber() {
 }
+    
+std::string TokenTypeNumber::getType() {
+    return "Number";
+}
 
 Token* TokenTypeNumber::parse(std::istream& stream) {
     char c;

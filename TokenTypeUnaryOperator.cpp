@@ -31,6 +31,10 @@ TokenTypeUnaryOperator::~TokenTypeUnaryOperator() {
 char TokenTypeUnaryOperator::getValue() {
     return value;
 }
+    
+std::string TokenTypeUnaryOperator::getType() {
+    return "Unary_" + std::string(1, value);
+}
 
 Token* TokenTypeUnaryOperator::parse(std::istream& stream) {
     return tokenSimpleReadChar(value, stream) ? new Token{*this, std::string(1, value)} : nullptr; // :( have to use new... well don't have to but it's easy and practice is good

@@ -31,6 +31,10 @@ TokenTypeBinaryOperator::~TokenTypeBinaryOperator() {
 char TokenTypeBinaryOperator::getValue() {
     return value;
 }
+    
+std::string TokenTypeBinaryOperator::getType() {
+    return "Binary_" + std::string(1, value);
+}
 
 Token* TokenTypeBinaryOperator::parse(std::istream& stream) {
     return tokenSimpleReadChar(value, stream) ? new Token{*this, std::string(1, value)} : nullptr; // :( have to use new... well don't have to but it's easy and practice is good
