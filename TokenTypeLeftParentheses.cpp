@@ -23,7 +23,7 @@ TokenTypeLeftParentheses::~TokenTypeLeftParentheses() {
 }
     
 std::string TokenTypeLeftParentheses::getType() {
-    return "Left Parentheses";
+    return "Left_Parentheses";
 }
 
 Token* TokenTypeLeftParentheses::parse(std::istream& stream) {
@@ -37,14 +37,17 @@ void TokenTypeLeftParentheses::parse(TokenTree* tree) {
         while(tree->hasNext()) {
             TokenTree* next = tree->getNext();
             std::string s = next->getToken().getValue();
+//            std::cout << "_" << s << std::endl;
             if(s == "(") {
                 parse(next);
             } else if (s == ")") {
                 //reconnect to chain
                 first->connectRight(first->disconnectNext());
-                first->connectNext(next->disconnectNext());
+                if(next->hasNext()) first->connectNext(next->disconnectNext());
+                else first->disconnectNext();
                 return;
             }
+            tree = tree->getNext();
         }
         TokenTree* next = tree->disconnectNext();
         //reconnect all links
