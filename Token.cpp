@@ -32,3 +32,8 @@ TokenType& Token::getType() {
 std::string Token::getValue() {
     return value;
 }
+
+std::ostream& operator<<(std::ostream& o, Token& t) {
+    o << "Token(" << t.getValue() << ")";
+    return o;
+}

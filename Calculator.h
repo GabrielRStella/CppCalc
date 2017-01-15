@@ -27,7 +27,9 @@ public:
     
     std::vector<TokenType*>& getTokenTypes();
     
-    TokenTree& read(std::istream& stream); //returns the top-most, left-most node
+    TokenTree* read(std::istream& stream); //returns the top-most, left-most node
+    
+    TokenTree* parse(TokenTree* tree);
 private:
     std::vector<TokenType*> tokenTypes;
 };

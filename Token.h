@@ -15,6 +15,7 @@
 #define TOKEN_H
 
 #include <string>
+#include <iostream>
 class TokenType;
 
 class Token {
@@ -29,6 +30,8 @@ private:
     TokenType& type;
     std::string value;
 };
+
+std::ostream& operator<<(std::ostream& o, Token& t);
 
 #endif /* TOKEN_H */
 

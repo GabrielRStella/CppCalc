@@ -5,25 +5,24 @@
  */
 
 /* 
- * File:   TokenTypeBinaryOperator.h
+ * File:   TokenTypeUnaryOperator.h
  * Author: ralitski
  *
- * Created on January 14, 2017, 1:10 AM
+ * Created on January 15, 2017, 1:55 AM
  */
 
-#ifndef TOKENTYPEBINARYOPERATOR_H
-#define TOKENTYPEBINARYOPERATOR_H
+#ifndef TOKENTYPEUNARYOPERATOR_H
+#define TOKENTYPEUNARYOPERATOR_H
 
 #include <iostream>
-#include <string>
 
 #include "TokenType.h"
 
-class TokenTypeBinaryOperator : public TokenType {
+class TokenTypeUnaryOperator : public TokenType {
 public:
-    TokenTypeBinaryOperator(char value);
-    TokenTypeBinaryOperator(const TokenTypeBinaryOperator& orig);
-    virtual ~TokenTypeBinaryOperator();
+    TokenTypeUnaryOperator(char value);
+    TokenTypeUnaryOperator(const TokenTypeUnaryOperator& orig);
+    virtual ~TokenTypeUnaryOperator();
     char getValue();
     
     Token* parse(std::istream& stream) override; //return null, or a token
@@ -34,5 +33,5 @@ private:
     char value;
 };
 
-#endif /* TOKENTYPEBINARYOPERATOR_H */
+#endif /* TOKENTYPEUNARYOPERATOR_H */
 

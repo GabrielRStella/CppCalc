@@ -23,3 +23,27 @@ TokenType::~TokenType() {
 Expression* TokenType::createExpression(TokenTree* tree) {
     return createExpression(tree->getLeft()->express(), tree->getRight()->express());
 }
+
+bool tokenSimpleReadString(std::string s, std::istream& stream) {
+    auto len = s.size();
+    char temp[len + 1 /*ensure null-termination*/] = {};
+    stream.read(temp, len);
+    std::string in{temp};
+    if(in == s) {
+        return true;
+    } else {
+        //put back chars...
+        return false;
+    }
+}
+
+bool tokenSimpleReadChar(char s, std::istream& stream) {
+    char c;
+    stream >> c;
+    if(c == s) {
+        return true;
+    } else {
+        stream.putback(c);
+        return false;
+    }
+}

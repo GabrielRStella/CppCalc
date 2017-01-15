@@ -11,19 +11,18 @@
  * Created on January 14, 2017, 1:10 AM
  */
 
-#ifndef TOKENTYPEBINARYOPERATOR_H
-#define TOKENTYPEBINARYOPERATOR_H
+#ifndef TOKENTYPEUNKNOWN_H
+#define TOKENTYPEUNKNOWN_H
 
 #include <iostream>
-#include <string>
 
 #include "TokenType.h"
 
-class TokenTypeBinaryOperator : public TokenType {
+class TokenTypeUnknown : public TokenType {
 public:
-    TokenTypeBinaryOperator(char value);
-    TokenTypeBinaryOperator(const TokenTypeBinaryOperator& orig);
-    virtual ~TokenTypeBinaryOperator();
+    TokenTypeUnknown(char value);
+    TokenTypeUnknown(const TokenTypeUnknown& orig);
+    virtual ~TokenTypeUnknown();
     char getValue();
     
     Token* parse(std::istream& stream) override; //return null, or a token
@@ -34,5 +33,5 @@ private:
     char value;
 };
 
-#endif /* TOKENTYPEBINARYOPERATOR_H */
+#endif /* TOKENTYPEUNKNOWN_H */
 

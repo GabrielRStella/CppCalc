@@ -29,24 +29,47 @@ using namespace std;
 #include "TokenTree.h"
 #include "TokenType.h"
 #include "TokenTypeBinaryOperator.h"
+#include "TokenTypeUnaryOperator.h"
+#include "TokenTypeLeftParentheses.h"
+#include "TokenTypeUnknown.h"
 
 /*
  * 
  */
 int main(int argc, char** argv) {
+    
     //TODO: a calculator that reads tokens out of cin, stores them in a syntax tree, and evaluates.
     //runs multi-line like an interpreter and can use variables.
     
-//TokenTypeBinaryOperator PLUS{"+"};
-//TokenTypeBinaryOperator MINUS{"-"};
-//TokenTypeBinaryOperator MULTIPLY{"*"};
-//TokenTypeBinaryOperator DIVIDE{"/"};
-//TokenType PARENTHESES_LEFT;
-//TokenType PARENTHESES_RIGHT;
-//TokenType VALUE;
+    Calculator c;
+    std::vector<TokenType*>& types = c.getTokenTypes();
+    //order matters
+
+    types.push_back(new TokenTypeLeftParentheses{});
+    types.push_back(new TokenTypeBinaryOperator{'*'});
+    types.push_back(new TokenTypeBinaryOperator{'/'});
+    types.push_back(new TokenTypeBinaryOperator{'+'});
+    types.push_back(new TokenTypeBinaryOperator{'-'});
+    
+    cout << "Input: ";
+    TokenTree* tree = c.read(cin);
+    cout << "Output: ";
+    if(tree == nullptr) cout << "nullptr";
+    else cout << *tree;
+    cout << endl;
+    tree = c.parse(tree);
+    cout << "Parsed: ";
+    if(tree == nullptr) cout << "nullptr";
+    else cout << *tree;
+    cout << endl;
+    
+//TokenTypeLeftParentheses PARENTHESES_LEFT;
+//TokenTypeUnknown PARENTHESES_RIGHT{")"};
+//TokenType VALUE; as in, a number
 
 //TODO---
-//TokenType ASSIGN;
+    //positive and negative (unary)
+//TokenTypeBinaryOperator ASSIGN{"="};
 //TokenType VARIABLE;
     
     return 0;

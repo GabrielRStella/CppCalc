@@ -23,7 +23,7 @@ public:
     TokenTree(const TokenTree& orig);
     virtual ~TokenTree();
     
-    Token getToken();
+    Token& getToken();
     
     //prev and next in the chain
     void connectPrev(TokenTree* prev);
@@ -58,6 +58,8 @@ private:
     TokenTree* left = nullptr;
     TokenTree* right = nullptr;
 };
+
+std::ostream& operator<<(std::ostream& o, TokenTree& t);
 
 #endif /* TOKENTREE_H */
 

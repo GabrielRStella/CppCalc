@@ -33,5 +33,8 @@ public:
 private:
 };
 
+bool tokenSimpleReadString(std::string s, std::istream& stream);
+bool tokenSimpleReadChar(char s, std::istream& stream);
+
 #endif /* TOKENTYPE_H */
 

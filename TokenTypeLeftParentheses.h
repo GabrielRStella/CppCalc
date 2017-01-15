@@ -11,28 +11,25 @@
  * Created on January 14, 2017, 1:10 AM
  */
 
-#ifndef TOKENTYPEBINARYOPERATOR_H
-#define TOKENTYPEBINARYOPERATOR_H
+#ifndef TOKENTYPELEFTPARENTHESES_H
+#define TOKENTYPELEFTPARENTHESES_H
 
 #include <iostream>
-#include <string>
 
 #include "TokenType.h"
 
-class TokenTypeBinaryOperator : public TokenType {
+class TokenTypeLeftParentheses : public TokenType {
 public:
-    TokenTypeBinaryOperator(char value);
-    TokenTypeBinaryOperator(const TokenTypeBinaryOperator& orig);
-    virtual ~TokenTypeBinaryOperator();
-    char getValue();
+    TokenTypeLeftParentheses();
+    TokenTypeLeftParentheses(const TokenTypeLeftParentheses& orig);
+    virtual ~TokenTypeLeftParentheses();
     
     Token* parse(std::istream& stream) override; //return null, or a token
     void parse(TokenTree* tree) override; //expand the tree wherever this token type is present, according to its own rules
     
     Expression* createExpression(Expression* left, Expression* right) override;
 private:
-    char value;
 };
 
-#endif /* TOKENTYPEBINARYOPERATOR_H */
+#endif /* TOKENTYPELEFTPARENTHESES_H */
 

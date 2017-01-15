@@ -27,7 +27,7 @@ TokenTree::~TokenTree() {
     delete &token;
 }
 
-Token TokenTree::getToken() {
+Token& TokenTree::getToken() {
     return token;
 }
     
@@ -159,4 +159,31 @@ TokenTree* TokenTree::getParent() {
 
 bool TokenTree::hasParent() {
     return up != nullptr;
+}
+
+//helpers
+
+std::ostream& print(std::ostream& o, TokenTree& t) {
+    o << t.getToken();
+    if(t.hasLeft()) {
+        o << ", left: ";
+        print(o, *(t.getLeft()));
+    }
+    if(t.hasRight()) {
+        o << ", right: ";
+        print(o, *(t.getRight()));
+    }
+    if(t.hasNext()) {
+        o << ", ";
+        print(o, *(t.getNext()));
+    } else {
+        o << "}";
+    }
+    return o;
+}
+
+std::ostream& operator<<(std::ostream& o, TokenTree& t) {
+    o << '{';
+    print(o, t);
+    return o;
 }
