@@ -31,6 +31,13 @@ Token* TokenTypeLeftParentheses::parse(std::istream& stream) {
 }
 
 void TokenTypeLeftParentheses::parse(TokenTree* tree) {
+    //do the lower ones
+    if(tree->hasRight()) {
+        parse(tree->getRight());
+    }
+    if(tree->hasLeft()) {
+        parse(tree->getLeft());
+    }
     //impl
     if(&(tree->getToken().getType()) == this /*pointing to the same loc...*/) {
         TokenTree* first = tree;
