@@ -166,11 +166,11 @@ bool TokenTree::hasParent() {
 std::ostream& print(std::ostream& o, TokenTree& t) {
     o << t.getToken();
     if(t.hasLeft()) {
-        o << ", left: ";
+        o << ", left: {";
         print(o, *(t.getLeft()));
     }
     if(t.hasRight()) {
-        o << ", right: ";
+        o << ", right: {";
         print(o, *(t.getRight()));
     }
     if(t.hasNext()) {

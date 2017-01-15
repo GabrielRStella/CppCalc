@@ -64,8 +64,16 @@ TokenTree* Calculator::read(std::istream& stream) {
 }
 
 TokenTree* Calculator::parse(TokenTree* tree) {
-    for(TokenType* type : tokenTypes) {
-        type->parse(tree);
+    bool cont = true;
+    while(cont) {
+        cont = false;
+        for(TokenType* type : tokenTypes) {
+            type->parse(tree);
+            while(tree->hasParent()) {
+                tree = tree->getParent();
+                cont = true;
+            }
+        }
     }
     return tree;
 }

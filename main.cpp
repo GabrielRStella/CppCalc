@@ -29,8 +29,9 @@ using namespace std;
 #include "TokenTree.h"
 #include "TokenType.h"
 #include "TokenTypeBinaryOperator.h"
-#include "TokenTypeUnaryOperator.h"
 #include "TokenTypeLeftParentheses.h"
+#include "TokenTypeNumber.h"
+#include "TokenTypeUnaryOperator.h"
 #include "TokenTypeUnknown.h"
 
 /*
@@ -45,6 +46,7 @@ int main(int argc, char** argv) {
     std::vector<TokenType*>& types = c.getTokenTypes();
     //order matters
 
+    types.push_back(new TokenTypeNumber{});
     types.push_back(new TokenTypeLeftParentheses{});
     types.push_back(new TokenTypeBinaryOperator{'*'});
     types.push_back(new TokenTypeBinaryOperator{'/'});
