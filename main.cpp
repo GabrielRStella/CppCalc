@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
     Calculator c;
     std::vector<TokenType*>& types = c.getTokenTypes();
     //order matters
-
+    
     types.push_back(new TokenTypeNumber{});
     types.push_back(new TokenTypeLeftParentheses{});
     types.push_back(new TokenTypeUnknown{')'});

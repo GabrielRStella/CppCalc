@@ -41,10 +41,6 @@ Token* TokenTypeBinaryOperator::parse(std::istream& stream) {
 }
 
 void TokenTypeBinaryOperator::parse(TokenTree* tree) {
-    //start from the right
-    if(tree->hasNext()) {
-        parse(tree->getNext());
-    }
     //do the lower ones
     if(tree->hasRight()) {
         parse(tree->getRight());
@@ -79,6 +75,10 @@ void TokenTypeBinaryOperator::parse(TokenTree* tree) {
         tree->connectLeft(prev);
         tree->connectRight(next);
         //all done...?
+    }
+    //go to the right
+    if(tree->hasNext()) {
+        parse(tree->getNext());
     }
 }
 

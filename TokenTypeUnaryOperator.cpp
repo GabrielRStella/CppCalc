@@ -41,10 +41,6 @@ Token* TokenTypeUnaryOperator::parse(std::istream& stream) {
 }
 
 void TokenTypeUnaryOperator::parse(TokenTree* tree) {
-    //start from the right
-    if(tree->hasNext()) {
-        parse(tree->getNext());
-    }
     //do the lower ones
     if(tree->hasRight()) {
         parse(tree->getRight());
@@ -68,6 +64,10 @@ void TokenTypeUnaryOperator::parse(TokenTree* tree) {
 //        }
         tree->connectRight(next);
         //all done...?
+    }
+    //go to the right
+    if(tree->hasNext()) {
+        parse(tree->getNext());
     }
 }
 

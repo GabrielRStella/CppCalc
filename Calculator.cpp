@@ -73,6 +73,7 @@ TokenTree* Calculator::parse(TokenTree* tree) {
                 tree = tree->getParent();
                 cont = true;
             }
+            if(cont) break; //may break stuff...? dont think so
         }
     }
     return tree;
