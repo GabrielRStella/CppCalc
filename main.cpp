@@ -30,6 +30,7 @@ using namespace std;
 #include "TokenType.h"
 #include "TokenTypeBinaryOperator.h"
 #include "TokenTypeLeftParentheses.h"
+#include "TokenTypeMultiBinaryOperator.h"
 #include "TokenTypeNumber.h"
 #include "TokenTypeUnaryOperator.h"
 #include "TokenTypeUnknown.h"
@@ -44,48 +45,58 @@ int main(int argc, char** argv) {
     
     Calculator c;
     std::vector<TokenType*>& types = c.getTokenTypes();
+    
     //order matters
     
     types.push_back(new TokenTypeNumber{});
     types.push_back(new TokenTypeLeftParentheses{});
     types.push_back(new TokenTypeUnknown{')'});
-    types.push_back(new TokenTypeBinaryOperator{'*', [](double a, double b) {return a * b;}});
-    types.push_back(new TokenTypeBinaryOperator{'/', [](double a, double b) {return a / b;}});
-    types.push_back(new TokenTypeBinaryOperator{'+', [](double a, double b) {return a + b;}});
-    types.push_back(new TokenTypeBinaryOperator{'-', [](double a, double b) {return a - b;}});
+    //two negative symbols - easier than allowing - to be binary and unary
+    types.push_back(new TokenTypeUnaryOperator{'_', [](double d) {return -d;}});
+    types.push_back(new TokenTypeUnaryOperator{'~', [](double d) {return -d;}});
     
-    while(true) {
-        cout << " Input: ";
-        TokenTree* tree = c.read(cin);
-        cout << " Output: ";
-        if(tree == nullptr) cout << "nullptr";
-        else cout << *tree;
-        cout << endl;
-        tree = c.parse(tree);
-        cout << " Parsed: ";
-        if(tree == nullptr) cout << "nullptr";
-        else cout << *tree;
-        cout << endl;
-        
-        Expression* e = tree->express();
-        cout << " Value: ";
-        if(e == nullptr) cout << "nullptr";
-        else cout << e->getValue();
-        cout << endl;
-        
-        cout << endl;
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
+    TokenTypeMultiBinaryOperator* oper1 = new TokenTypeMultiBinaryOperator{};
+    oper1->addOperator('*', [](double a, double b) {return a * b;});
+    oper1->addOperator('/', [](double a, double b) {return a / b;});
+    types.push_back(oper1);
     
-//TokenTypeLeftParentheses PARENTHESES_LEFT;
-//TokenTypeUnknown PARENTHESES_RIGHT{")"};
-//TokenType VALUE; as in, a number
+    TokenTypeMultiBinaryOperator* oper2 = new TokenTypeMultiBinaryOperator{};
+    oper2->addOperator('+', [](double a, double b) {return a + b;});
+    oper2->addOperator('-', [](double a, double b) {return a - b;});
+    types.push_back(oper2);
 
 //TODO---
     //positive and negative (unary)
 //TokenTypeBinaryOperator ASSIGN{"="};
 //TokenType VARIABLE;
+    
+    while(true) {
+        try {
+            cout << " Input: ";
+            TokenTree* tree = c.read(cin);
+            cout << " Output: ";
+            if(tree == nullptr) cout << "nullptr";
+            else cout << *tree;
+            cout << endl;
+            tree = c.parse(tree);
+            cout << " Parsed: ";
+            if(tree == nullptr) cout << "nullptr";
+            else cout << *tree;
+            cout << endl;
+
+            Expression* e = tree->express();
+            cout << " Value: ";
+            if(e == nullptr) cout << "nullptr";
+            else cout << e->getValue();
+            cout << endl;
+
+            cout << endl;
+        } catch(...) {
+            cout << endl << "Error." << endl;
+        }
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
     
     return 0;
 }

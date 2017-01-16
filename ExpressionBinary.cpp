@@ -25,6 +25,6 @@ ExpressionBinary::~ExpressionBinary() {
 }
 
 double ExpressionBinary::getValue() {
-    return oper(left->getValue(), right->getValue());
+    return (left != nullptr && right != nullptr) ? oper(left->getValue(), right->getValue()) : 0;
 }
 

@@ -24,6 +24,6 @@ ExpressionUnary::~ExpressionUnary() {
 }
 
 double ExpressionUnary::getValue() {
-    return oper(child->getValue());
+    return child != nullptr ? oper(child->getValue()) : 0;
 }
 
