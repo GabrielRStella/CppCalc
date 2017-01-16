@@ -19,10 +19,10 @@
 #include "TokenType.h"
 #include "TokenTree.h"
 
-TokenTypeBinaryOperator::TokenTypeBinaryOperator(char v) : value{v} {
+TokenTypeBinaryOperator::TokenTypeBinaryOperator(char v, BinaryOperation op) : value{v}, oper{op} {
 }
 
-TokenTypeBinaryOperator::TokenTypeBinaryOperator(const TokenTypeBinaryOperator& orig) : value{orig.value} {
+TokenTypeBinaryOperator::TokenTypeBinaryOperator(const TokenTypeBinaryOperator& orig) : value{orig.value}, oper{orig.oper} {
 }
 
 TokenTypeBinaryOperator::~TokenTypeBinaryOperator() {
@@ -82,6 +82,6 @@ void TokenTypeBinaryOperator::parse(TokenTree* tree) {
     }
 }
 
-Expression* TokenTypeBinaryOperator::createExpression(const Token& t, Expression* left, Expression* right) {
-    
+Expression* TokenTypeBinaryOperator::createExpression(Token& t, Expression* left, Expression* right) {
+    return new ExpressionBinary{left, right, oper};
 }

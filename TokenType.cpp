@@ -20,8 +20,8 @@ TokenType::~TokenType() {
 
 }
 
-Expression* TokenType::createExpression(const Token& t, TokenTree* tree) {
-    return createExpression(tree->hasLeft() ? tree->getLeft()->express() : nullptr, tree->hasRight() ? tree->getRight()->express() : nullptr);
+Expression* TokenType::createExpression(Token& t, TokenTree* tree) {
+    return createExpression(t, tree->hasLeft() ? tree->getLeft()->express() : nullptr, tree->hasRight() ? tree->getRight()->express() : nullptr);
 }
 
 bool tokenSimpleReadString(std::string s, std::istream& stream) {

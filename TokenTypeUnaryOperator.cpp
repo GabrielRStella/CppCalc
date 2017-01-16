@@ -19,10 +19,10 @@
 #include "TokenType.h"
 #include "TokenTree.h"
 
-TokenTypeUnaryOperator::TokenTypeUnaryOperator(char v) : value{v} {
+TokenTypeUnaryOperator::TokenTypeUnaryOperator(char v, UnaryOperation op) : value{v}, oper{op} {
 }
 
-TokenTypeUnaryOperator::TokenTypeUnaryOperator(const TokenTypeUnaryOperator& orig) : value{orig.value} {
+TokenTypeUnaryOperator::TokenTypeUnaryOperator(const TokenTypeUnaryOperator& orig) : value{orig.value}, oper{orig.oper} {
 }
 
 TokenTypeUnaryOperator::~TokenTypeUnaryOperator() {
@@ -71,6 +71,6 @@ void TokenTypeUnaryOperator::parse(TokenTree* tree) {
     }
 }
 
-Expression* TokenTypeUnaryOperator::createExpression(const Token& t, Expression* left, Expression* right) {
-    
+Expression* TokenTypeUnaryOperator::createExpression(Token& t, Expression* left, Expression* right) {
+    return new ExpressionUnary{right, oper};
 }

@@ -17,10 +17,11 @@
 #include <iostream>
 
 #include "TokenType.h"
+#include "ExpressionUnary.h"
 
 class TokenTypeUnaryOperator : public TokenType {
 public:
-    TokenTypeUnaryOperator(char value);
+    TokenTypeUnaryOperator(char value, UnaryOperation op);
     TokenTypeUnaryOperator(const TokenTypeUnaryOperator& orig);
     virtual ~TokenTypeUnaryOperator();
     char getValue();
@@ -30,9 +31,10 @@ public:
     Token* parse(std::istream& stream) override; //return null, or a token
     void parse(TokenTree* tree) override; //expand the tree wherever this token type is present, according to its own rules
     
-    Expression* createExpression(const Token& t, Expression* left, Expression* right) override;
+    Expression* createExpression(Token& t, Expression* left, Expression* right) override;
 private:
     char value;
+    UnaryOperation oper;
 };
 
 #endif /* TOKENTYPEUNARYOPERATOR_H */

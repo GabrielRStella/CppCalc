@@ -18,10 +18,11 @@
 #include <string>
 
 #include "TokenType.h"
+#include "ExpressionBinary.h"
 
 class TokenTypeBinaryOperator : public TokenType {
 public:
-    TokenTypeBinaryOperator(char value);
+    TokenTypeBinaryOperator(char value, BinaryOperation op);
     TokenTypeBinaryOperator(const TokenTypeBinaryOperator& orig);
     virtual ~TokenTypeBinaryOperator();
     char getValue();
@@ -31,9 +32,10 @@ public:
     Token* parse(std::istream& stream) override; //return null, or a token
     void parse(TokenTree* tree) override; //expand the tree wherever this token type is present, according to its own rules
     
-    Expression* createExpression(const Token& t, Expression* left, Expression* right) override;
+    Expression* createExpression(Token& t, Expression* left, Expression* right) override;
 private:
     char value;
+    BinaryOperation oper;
 };
 
 #endif /* TOKENTYPEBINARYOPERATOR_H */

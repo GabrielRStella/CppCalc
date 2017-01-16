@@ -76,6 +76,6 @@ void TokenTypeLeftParentheses::parse(TokenTree* tree) {
     }
 }
 
-Expression* TokenTypeLeftParentheses::createExpression(const Token& t, Expression* left, Expression* right) {
+Expression* TokenTypeLeftParentheses::createExpression(Token& t, Expression* left, Expression* right) {
     return right;
 }

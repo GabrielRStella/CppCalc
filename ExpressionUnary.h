@@ -11,21 +11,24 @@
  * Created on January 13, 2017, 5:46 PM
  */
 
-#ifndef EXPRESSIONNUMBER_H
-#define EXPRESSIONNUMBER_H
+#ifndef EXPRESSIONUNARY_H
+#define EXPRESSIONUNARY_H
 
 #include "Expression.h"
 
-class ExpressionNumber : public Expression {
+typedef double (*UnaryOperation)(double);
+
+class ExpressionUnary : public Expression {
 public:
-    ExpressionNumber(double v);
-    ExpressionNumber(const ExpressionNumber& orig);
-    virtual ~ExpressionNumber();
+    ExpressionUnary(Expression* sub, UnaryOperation op);
+    ExpressionUnary(const ExpressionUnary& orig);
+    virtual ~ExpressionUnary();
     
     double getValue() override;
 private:
-    double value;
+    Expression* child;
+    UnaryOperation oper;
 };
 
-#endif /* EXPRESSIONNUMBER_H */
+#endif /* EXPRESSIONUNARY_H */
 

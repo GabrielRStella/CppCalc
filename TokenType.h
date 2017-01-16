@@ -30,8 +30,8 @@ public:
     virtual Token* parse(std::istream& stream) = 0; //return null, or a token
     virtual void parse(TokenTree* tree) = 0; //expand the tree wherever this token type is present, according to its own rules
     
-    Expression* createExpression(const Token& t, TokenTree* tree);
-    virtual Expression* createExpression(Expression* left, Expression* right) = 0;
+    Expression* createExpression(Token& t, TokenTree* tree);
+    virtual Expression* createExpression(Token& t, Expression* left, Expression* right) = 0;
 private:
 };
 

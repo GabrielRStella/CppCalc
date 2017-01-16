@@ -14,6 +14,7 @@
 #include <cctype>
 
 #include "TokenTypeNumber.h"
+#include "ExpressionNumber.h"
 
 TokenTypeNumber::TokenTypeNumber() {
 }
@@ -44,6 +45,6 @@ Token* TokenTypeNumber::parse(std::istream& stream) {
 void TokenTypeNumber::parse(TokenTree* tree) {
 }
 
-Expression* TokenTypeNumber::createExpression(const Token& t, Expression* left, Expression* right) {
+Expression* TokenTypeNumber::createExpression(Token& t, Expression* left, Expression* right) {
     return new ExpressionNumber{std::stod(t.getValue())};
 }

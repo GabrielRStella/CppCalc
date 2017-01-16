@@ -150,7 +150,7 @@ bool TokenTree::hasRight() {
 }
 
 Expression* TokenTree::express() {
-    return token.getType().createExpression(this);
+    return token.getType().createExpression(token, this);
 }
     
 TokenTree* TokenTree::getParent() {

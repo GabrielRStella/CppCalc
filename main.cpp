@@ -49,10 +49,10 @@ int main(int argc, char** argv) {
     types.push_back(new TokenTypeNumber{});
     types.push_back(new TokenTypeLeftParentheses{});
     types.push_back(new TokenTypeUnknown{')'});
-    types.push_back(new TokenTypeBinaryOperator{'*'});
-    types.push_back(new TokenTypeBinaryOperator{'/'});
-    types.push_back(new TokenTypeBinaryOperator{'+'});
-    types.push_back(new TokenTypeBinaryOperator{'-'});
+    types.push_back(new TokenTypeBinaryOperator{'*', [](double a, double b) {return a * b;}});
+    types.push_back(new TokenTypeBinaryOperator{'/', [](double a, double b) {return a / b;}});
+    types.push_back(new TokenTypeBinaryOperator{'+', [](double a, double b) {return a + b;}});
+    types.push_back(new TokenTypeBinaryOperator{'-', [](double a, double b) {return a - b;}});
     
     while(true) {
         cout << " Input: ";
