@@ -55,18 +55,25 @@ int main(int argc, char** argv) {
     types.push_back(new TokenTypeBinaryOperator{'-'});
     
     while(true) {
-        cout << "Input: ";
+        cout << " Input: ";
         TokenTree* tree = c.read(cin);
-        cout << "Output: ";
+        cout << " Output: ";
         if(tree == nullptr) cout << "nullptr";
         else cout << *tree;
         cout << endl;
         tree = c.parse(tree);
-        cout << "Parsed: ";
+        cout << " Parsed: ";
         if(tree == nullptr) cout << "nullptr";
         else cout << *tree;
-        cout << endl << endl;
+        cout << endl;
         
+        Expression* e = tree->express();
+        cout << " Value: ";
+        if(e == nullptr) cout << "nullptr";
+        else cout << e->getValue();
+        cout << endl;
+        
+        cout << endl;
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }

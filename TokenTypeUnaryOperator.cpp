@@ -71,6 +71,6 @@ void TokenTypeUnaryOperator::parse(TokenTree* tree) {
     }
 }
 
-Expression* TokenTypeUnaryOperator::createExpression(Expression* left, Expression* right) {
+Expression* TokenTypeUnaryOperator::createExpression(const Token& t, Expression* left, Expression* right) {
     
 }

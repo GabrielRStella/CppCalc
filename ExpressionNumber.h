@@ -11,19 +11,21 @@
  * Created on January 13, 2017, 5:46 PM
  */
 
-#ifndef EXPRESSION_H
-#define EXPRESSION_H
+#ifndef EXPRESSIONNUMBER_H
+#define EXPRESSIONNUMBER_H
 
-class Expression {
+#include "Expression.h"
+
+class ExpressionNumber {
 public:
-    Expression();
-    Expression(const Expression& orig);
-    virtual ~Expression();
+    ExpressionNumber(double v);
+    ExpressionNumber(const ExpressionNumber& orig);
+    virtual ~ExpressionNumber();
     
-    virtual double getValue() = 0; //TODO: add variables
+    double getValue() override;
 private:
-
+    double value;
 };
 
-#endif /* EXPRESSION_H */
+#endif /* EXPRESSIONNUMBER_H */
 

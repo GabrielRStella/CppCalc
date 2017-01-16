@@ -82,6 +82,6 @@ void TokenTypeBinaryOperator::parse(TokenTree* tree) {
     }
 }
 
-Expression* TokenTypeBinaryOperator::createExpression(Expression* left, Expression* right) {
+Expression* TokenTypeBinaryOperator::createExpression(const Token& t, Expression* left, Expression* right) {
     
 }

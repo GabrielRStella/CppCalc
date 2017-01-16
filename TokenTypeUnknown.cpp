@@ -44,6 +44,6 @@ void TokenTypeUnknown::parse(TokenTree* tree) {
     //do nothing
 }
 
-Expression* TokenTypeUnknown::createExpression(Expression* left, Expression* right) {
+Expression* TokenTypeUnknown::createExpression(const Token& t, Expression* left, Expression* right) {
     return nullptr;
 }
