@@ -39,7 +39,7 @@ void TokenTypeLeftParentheses::parse(TokenTree* tree) {
         parse(tree->getLeft());
     }
     //impl
-    if(&(tree->getToken().getType()) == this /*pointing to the same loc...*/) {
+    if(&(tree->getToken().getType()) == this /*pointing to the same loc...*/ && tree->hasNext()) {
         TokenTree* first = tree;
         while(tree->hasNext()) {
             TokenTree* next = tree->getNext();
